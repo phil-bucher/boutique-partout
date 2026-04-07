@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boutique Partout – Mode & Accessoires Luzern</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0A0A0A;
+      --white: #FAFAF8;
+      --rose: #C9A89A;
+      --rose-light: #F2E8E4;
+      --rose-dark: #8B5E52;
+      --grey: #888880;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      background: rgba(250,250,248,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--grey);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-cta {
+      border: 1px solid var(--black);
+      color: var(--black) !important;
+      padding: 0.5rem 1.4rem;
+      transition: all 0.3s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--black) !important;
+      color: var(--white) !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 6rem;
+      position: relative;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 10%; bottom: 10%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--rose-dark);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+      color: var(--black);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose-dark);
+    }
+
+    .hero-sub {
+      font-size: 0.8rem;
+      color: var(--grey);
+      line-height: 2;
+      max-width: 380px;
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.9rem 2.5rem;
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+      display: inline-block;
+    }
+
+    .btn-dark:hover { opacity: 0.75; }
+
+    .btn-outline {
+      color: var(--black);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .btn-outline:hover { color: var(--rose-dark); border-color: var(--rose-dark); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--rose-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-visual-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(201,168,154,0.5) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 70%, rgba(139,94,82,0.2) 0%, transparent 50%);
+    }
+
+    .hero-editorial-box {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 4rem;
+    }
+
+    .editorial-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10rem;
+      font-weight: 300;
+      color: rgba(139,94,82,0.12);
+      line-height: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      letter-spacing: -0.05em;
+    }
+
+    .editorial-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    .editorial-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      margin-bottom: 2rem;
+    }
+
+    .editorial-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .editorial-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 3rem;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--rose-dark);
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 0.3rem;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee {
+      background: var(--black);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: scroll 25s linear infinite;
+    }
+
+    .marquee-inner span {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin: 0 2rem;
+    }
+
+    .marquee-inner span.accent {
+      color: var(--rose);
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── KOLLEKTION ── */
+    .kollektion {
+      padding: 8rem 6rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 5rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose-dark);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--rose-dark);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    .section-title em { font-style: italic; color: var(--rose-dark); }
+
+    .section-link {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+      white-space: nowrap;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .section-link:hover { color: var(--rose-dark); border-color: var(--rose-dark); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .service-item {
+      padding: 3rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-item:nth-child(3n) { border-right: none; }
+    .service-item:nth-child(n+4) { border-bottom: none; }
+
+    .service-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--rose-light);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .service-item:hover::before { opacity: 1; }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--rose);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+      position: relative;
+      letter-spacing: 0.03em;
+    }
+
+    .service-desc {
+      font-size: 0.75rem;
+      color: var(--grey);
+      line-height: 1.9;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      position: relative;
+    }
+
+    /* ── ÜBER UNS ── */
+    .about {
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .about-left {
+      padding: 8rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-left .section-eyebrow { color: var(--rose); }
+    .about-left .section-eyebrow::before { background: var(--rose); }
+
+    .about-left .section-title { color: var(--white); margin-bottom: 2rem; }
+
+    .about-text {
+      font-size: 0.8rem;
+      color: rgba(250,250,248,0.6);
+      line-height: 2.2;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .about-signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--rose);
+      margin-top: 2rem;
+    }
+
+    .about-role {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.4);
+      margin-top: 0.5rem;
+    }
+
+    .about-right {
+      background: var(--rose-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-right::before {
+      content: 'Mode';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      font-weight: 300;
+      color: rgba(139,94,82,0.08);
+      position: absolute;
+      bottom: -1rem;
+      right: -1rem;
+      white-space: nowrap;
+    }
+
+    .about-values {
+      list-style: none;
+      width: 100%;
+      position: relative;
+    }
+
+    .about-values li {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(139,94,82,0.2);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .about-values li:last-child { border-bottom: none; }
+
+    .about-values li::before {
+      content: '✦';
+      color: var(--rose-dark);
+      font-size: 0.5rem;
+    }
+
+    /* ── KONTAKT ── */
+    .kontakt {
+      padding: 8rem 6rem;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .kontakt-info .section-title { margin-bottom: 1.5rem; }
+
+    .kontakt-desc {
+      font-size: 0.8rem;
+      color: var(--grey);
+      line-height: 2;
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .kontakt-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .kontakt-detail {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    .kontakt-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      background: var(--rose-light);
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 0.9rem 1rem;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--black);
+      letter-spacing: 0.05em;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--rose-dark);
+    }
+
+    .form-group textarea { resize: none; min-height: 100px; }
+
+    .form-submit {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 1rem 2.5rem;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { opacity: 0.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(250,250,248,0.4);
+      padding: 2.5rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: 0.15em;
+    }
+
+    .footer-center { text-align: center; }
+    .footer-right { text-align: right; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 5rem 1.5rem 3rem; }
+      .hero-right { height: 380px; }
+      .kollektion { padding: 5rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-item { border-right: none !important; }
+      .about { grid-template-columns: 1fr; }
+      .about-left { padding: 5rem 1.5rem; }
+      .about-right { padding: 3rem 1.5rem; min-height: 300px; }
+      .kontakt { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; gap: 0.5rem; padding: 2rem 1.5rem; text-align: center; }
+      .footer-right { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Boutique Partout</div>
+    <ul class="nav-links">
+      <li><a href="#kollektion">Kollektion</a></li>
+      <li><a href="#ueber-uns">Über uns</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="#kontakt" class="nav-cta">Besuchen</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Mode & Accessoires · Luzern</div>
+      <h1 class="hero-title">
+        Zeitlose<br/>
+        <em>Eleganz</em><br/>
+        für Sie.
+      </h1>
+      <p class="hero-sub">
+        In unserer Boutique im Herzen von Luzern finden Sie sorgfältig 
+        ausgewählte Mode und Accessoires für die moderne Frau – 
+        persönlich, stilvoll, einzigartig.
+      </p>
+      <div class="hero-actions">
+        <a href="#kollektion" class="btn-dark">Kollektion entdecken</a>
+        <a href="#kontakt" class="btn-outline">Uns besuchen</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-visual">
+        <div class="hero-visual-bg"></div>
+        <div class="editorial-year">BP</div>
+        <div class="editorial-content">
+          <div class="editorial-label">Pfistergasse · Luzern</div>
+          <div class="editorial-name">Boutique<br/>Partout</div>
+          <div class="editorial-sub">Mode & Accessoires</div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">5.0</span>
+            <div class="hero-stat-label">Google ★</div>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">Luzern</span>
+            <div class="hero-stat-label">Altstadt</div>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">100%</span>
+            <div class="hero-stat-label">Persönlich</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span>Damenmode</span><span class="accent">✦</span>
+      <span>Accessoires</span><span class="accent">✦</span>
+      <span>Katharina Hovman</span><span class="accent">✦</span>
+      <span>Styling Beratung</span><span class="accent">✦</span>
+      <span>Luzern Altstadt</span><span class="accent">✦</span>
+      <span>Pfistergasse 15</span><span class="accent">✦</span>
+      <span>Neue Kollektion</span><span class="accent">✦</span>
+      <span>Damenmode</span><span class="accent">✦</span>
+      <span>Accessoires</span><span class="accent">✦</span>
+      <span>Katharina Hovman</span><span class="accent">✦</span>
+      <span>Styling Beratung</span><span class="accent">✦</span>
+      <span>Luzern Altstadt</span><span class="accent">✦</span>
+      <span>Pfistergasse 15</span><span class="accent">✦</span>
+      <span>Neue Kollektion</span><span class="accent">✦</span>
+    </div>
+  </div>
+
+  <!-- KOLLEKTION -->
+  <section class="kollektion" id="kollektion">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Was wir anbieten</div>
+        <h2 class="section-title">Unsere <em>Welt</em><br/>der Mode</h2>
+      </div>
+      <a href="#kontakt" class="section-link">Kontakt aufnehmen →</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-num">I</div>
+        <div class="service-title">Damenmode</div>
+        <p class="service-desc">Sorgfältig ausgewählte Kollektionen für die moderne Frau. Von casual bis elegant – immer mit dem gewissen Etwas.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">II</div>
+        <div class="service-title">Accessoires</div>
+        <p class="service-desc">Das i-Tüpfelchen für jeden Look. Taschen, Schmuck, Schals und mehr – perfekt abgestimmt auf unsere Mode.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">III</div>
+        <div class="service-title">Katharina Hovman</div>
+        <p class="service-desc">Als autorisierter Händler führen wir die beliebte dänische Designerin – zeitlos, fliessend, für jede Figur.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">IV</div>
+        <div class="service-title">Styling Beratung</div>
+        <p class="service-desc">Persönliche Beratung direkt im Salon. Wir helfen Ihnen, Ihren eigenen Stil zu finden und selbstbewusst zu tragen.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">V</div>
+        <div class="service-title">Neue Kollektion</div>
+        <p class="service-desc">Regelmässig neue Stücke aus aktuellen Kollektionen. Kommen Sie vorbei und lassen Sie sich überraschen.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">VI</div>
+        <div class="service-title">Geschenkideen</div>
+        <p class="service-desc">Verschenken Sie Stil. Ob Geburtstag, Jubiläum oder einfach so – ein Stück aus unserer Boutique ist immer das richtige Geschenk.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER UNS -->
+  <section class="about" id="ueber-uns">
+    <div class="about-left">
+      <div class="section-eyebrow">Wer wir sind</div>
+      <h2 class="section-title" style="color:var(--white)">Mode mit<br/><em>Leidenschaft</em></h2>
+      <p class="about-text">
+        Boutique Partout steht für persönliche Mode-Erlebnisse mitten in der schönen Altstadt von Luzern. 
+        Mit viel Herzblut und einem feinen Gespür für Qualität wählen wir jedes Stück unserer Kollektion sorgfältig aus.
+      </p>
+      <p class="about-text">
+        Bei uns finden Sie nicht die grosse Massenware – sondern besondere Stücke, die zu Ihrer Persönlichkeit passen. 
+        Unsere persönliche Beratung ist dabei inklusive und von Herzen.
+      </p>
+      <div class="about-signature">Corinne Zihlmann</div>
+      <div class="about-role">Inhaberin · Boutique Partout</div>
+    </div>
+    <div class="about-right">
+      <ul class="about-values">
+        <li>Sorgfältig kuratierte Damenmode</li>
+        <li>Persönliche Styling-Beratung inklusive</li>
+        <li>Autorisierter Katharina Hovman Händler</li>
+        <li>5.0 Sterne auf Google</li>
+        <li>Mitten in der Luzerner Altstadt</li>
+        <li>Di–Fr 10–18:30 · Sa 9–17 Uhr</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="kontakt" id="kontakt">
+    <div class="kontakt-info">
+      <div class="section-eyebrow">Besuchen Sie uns</div>
+      <h2 class="section-title">Wir freuen uns<br/>auf <em>Sie.</em></h2>
+      <p class="kontakt-desc">
+        Kommen Sie vorbei oder schreiben Sie uns – wir beraten Sie gerne 
+        persönlich und helfen Ihnen, das perfekte Stück zu finden.
+      </p>
+      <div class="kontakt-details">
+        <div class="kontakt-detail">
+          <div class="kontakt-icon">📍</div>
+          <span>Pfistergasse 15, 6003 Luzern</span>
+        </div>
+        <div class="kontakt-detail">
+          <div class="kontakt-icon">📞</div>
+          <span>041 240 48 78</span>
+        </div>
+        <div class="kontakt-detail">
+          <div class="kontakt-icon">✉️</div>
+          <span>euzi&#64;bluewin.ch</span>
+        </div>
+        <div class="kontakt-detail">
+          <div class="kontakt-icon">🕐</div>
+          <span>Di–Fr 10:00–18:30 · Sa 09:00–17:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vorname</label>
+          <input type="text" placeholder="Marie" />
+        </div>
+        <div class="form-group">
+          <label>Nachname</label>
+          <input type="text" placeholder="Muster" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="email" placeholder="marie@muster.ch" />
+      </div>
+      <div class="form-group">
+        <label>Betreff</label>
+        <select>
+          <option value="">Bitte wählen...</option>
+          <option>Allgemeine Anfrage</option>
+          <option>Styling Beratung</option>
+          <option>Verfügbarkeit eines Artikels</option>
+          <option>Geschenkidee</option>
+          <option>Anderes</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Nachricht</label>
+        <textarea placeholder="Ihre Nachricht an uns..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('Vielen Dank für Ihre Nachricht! Wir melden uns so bald wie möglich.')">Nachricht senden</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Boutique Partout</div>
+    <div class="footer-center">© 2025 Boutique Partout · Pfistergasse 15 · 6003 Luzern</div>
+    <div class="footer-right">041 240 48 78</div>
+  </footer>
+
+</body>
+</html>
